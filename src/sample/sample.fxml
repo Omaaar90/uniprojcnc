@@ -12,32 +12,28 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" text="Close"/>
+            <MenuItem mnemonicParsing="false" text="Close" />
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
-            <MenuItem mnemonicParsing="false" text="Delete"/>
+            <MenuItem mnemonicParsing="false" text="Delete" />
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
-            <MenuItem mnemonicParsing="false" text="About"/>
+            <MenuItem mnemonicParsing="false" text="About" />
         </Menu>
     </MenuBar>
-    <Canvas height="450.0" layoutX="228.0" layoutY="35.0" width="650.0" AnchorPane.rightAnchor="22.0"
-            AnchorPane.topAnchor="35.0"/>
-    <TextField layoutX="14.0" layoutY="506.0" prefHeight="26.0" prefWidth="283.0" AnchorPane.leftAnchor="5.0"/>
-    <Button layoutX="362.0" layoutY="506.0" mnemonicParsing="false" text="Button"/>
-    <Button layoutX="303.0" layoutY="506.0" mnemonicParsing="false" text="Button"/>
-    <ToggleButton layoutX="422.0" layoutY="505.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0"
-                  text="ToggleButton"/>
-    <Separator layoutX="207.0" orientation="VERTICAL" AnchorPane.bottomAnchor="105.0" AnchorPane.topAnchor="26.0"/>
-    <Separator layoutX="78.0" layoutY="495.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0"/>
+    <Canvas height="450.0" layoutX="228.0" layoutY="35.0" width="650.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="35.0" />
+    <TextField layoutX="14.0" layoutY="506.0" prefHeight="26.0" prefWidth="283.0" AnchorPane.leftAnchor="5.0" />
+    <Button layoutX="362.0" layoutY="506.0" mnemonicParsing="false" text="Button" />
+    <Button fx:id="hello" layoutX="303.0" layoutY="506.0" mnemonicParsing="false" onAction="#hellothere" text="Button" />
+    <ToggleButton layoutX="422.0" layoutY="505.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="ToggleButton" />
+    <Separator layoutX="207.0" orientation="VERTICAL" AnchorPane.bottomAnchor="105.0" AnchorPane.topAnchor="26.0" />
+    <Separator layoutX="78.0" layoutY="495.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0" />
     <TableView layoutX="7.0" layoutY="28.0" prefHeight="463.0" prefWidth="200.0" AnchorPane.leftAnchor="5.0">
       <columns>
-          <TableColumn prefWidth="199.199951171875" text="C1"/>
+          <TableColumn prefWidth="199.199951171875" text="C1" />
       </columns>
     </TableView>
 </AnchorPane>

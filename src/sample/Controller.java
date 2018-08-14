@@ -12,9 +12,8 @@ public class Controller {
 
         @FXML
         void hellothere(ActionEvent event) {
-Main.sayhello();
+         Main.sayhello();
         }
-
     }
 
 
