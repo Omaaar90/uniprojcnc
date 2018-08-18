@@ -27,6 +27,7 @@ public class Controller {
         private Button hello;
 
         @FXML
+
         private TableView<Map.Entry<String,String>> commandTable ;
 
         @FXML
@@ -64,6 +65,10 @@ public class Controller {
                 commandTable.setItems(items);
         }
 
+        void hellothere(ActionEvent event) {
+         Main.sayhello();
+        }
+    }
 
         @FXML
         private void handleEnterAction(ActionEvent event) {

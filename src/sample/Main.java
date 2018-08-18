@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.*;
 
 public class Main extends Application {
         @Override
@@ -18,7 +17,7 @@ public class Main extends Application {
             primaryStage.show();
         }
 
-public static void sayhello(){
+static void sayhello(){
     System.out.println("Hello0");
 }
         public static void main(String[] args) {
