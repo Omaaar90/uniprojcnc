@@ -1,4 +1,4 @@
-/*writeen by O.Asaad*/
+/* O.Asaad */
 
 package sample;
 
@@ -7,6 +7,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
@@ -14,17 +17,26 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Controller {
+public class Controller  {
 
         private Map commandMap = new TreeMap();
 
         @FXML
         private Button hello;
+
+        @FXML
+        private Button btn1;
+
+        @FXML
+        private Button btn2;
 
         @FXML
         private TableView<Map.Entry<String,String>> commandTable ;
@@ -66,14 +78,47 @@ public class Controller {
 
 
         @FXML
-        private void handleEnterAction(ActionEvent event) {
-
+        private void handlePlayAction(ActionEvent event) {
+                Main.sayhello();
         }
 
 
         @FXML
-        private void handlePlayAction(ActionEvent event) {
-                Main.sayhello();
+        private void handleMultiCommandAction(ActionEvent event) throws IOException{
+
+         /*       Stage stage;
+                Parent root;
+
+                if(event.getSource()==btn1)
+                {
+                        stage = new Stage();
+                        root = FXMLLoader.load(getClass().getResource("MultiComm.fxml"));
+                        stage.setScene(new Scene(root));
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.initOwner(btn1.getScene().getWindow());
+                        stage.showAndWait();
+                }
+                else
+                {
+                        stage=(Stage)btn2.getScene().getWindow();
+                        stage.close();
+                }
+
+        }
+
+           /*
+               try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MultiComm.fxml"));
+                        Parent root = fxmlLoader.load();
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                }
+                catch (Exception e) {
+                        System.err.println(e.getMessage());
+
+                }
+*/
         }
 
         @FXML
@@ -85,6 +130,21 @@ public class Controller {
         private void handleStopAction(ActionEvent event) {
                 Main.sayhello();
         }
+
+
+
+        @FXML
+        void handleAddMultiCommAction(ActionEvent event) {
+
+        }
+
+        @FXML
+        void handleCloseMultiCommAction(ActionEvent event) {
+
+        }
+
+
+
 
         @FXML
         private void handleTextInput(KeyEvent ev) {

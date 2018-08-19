@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import java.lang.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
@@ -42,7 +43,6 @@
        <Button layoutX="100.0" layoutY="553.0" mnemonicParsing="false" onAction="#handlePlayAction" prefHeight="31.0" prefWidth="62.0" text="Play" />
        <ToggleButton layoutX="38.0" layoutY="553.0" mnemonicParsing="false" onAction="#handlePauseAction" prefHeight="31.0" prefWidth="62.0" text="Pause" />
        <Separator layoutX="244.0" layoutY="25.0" orientation="VERTICAL" AnchorPane.bottomAnchor="106.0" AnchorPane.topAnchor="25.0" />
-       <Separator layoutX="78.0" layoutY="495.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0" />
        <TableView fx:id="commandTable" layoutY="34.0" prefHeight="450.0" prefWidth="247.0" AnchorPane.leftAnchor="0.0">
          <columns>
             <TableColumn fx:id="positionColumn" editable="false" prefWidth="75.0" text="Position" />
@@ -50,5 +50,10 @@
          </columns>
        </TableView>
       <Button layoutX="162.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleStopAction" prefHeight="32.0" prefWidth="51.0" text="Stop" />
+      <Button fx:id="btn1" layoutX="303.0" layoutY="506.0" mnemonicParsing="false" onAction="#handleMultiCommandAction" text="+ Add" />
+       <Separator disable="true" layoutY="489.0" opacity="0.86" prefHeight="10.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0">
+         <effect>
+            <Glow />
+         </effect></Separator>
    </children>
 </AnchorPane>
