@@ -17,7 +17,7 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
        <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
           <menus>
@@ -38,7 +38,7 @@
               </Menu>
           </menus>
        </MenuBar>
-       <Canvas height="450.0" layoutX="254.0" layoutY="35.0" width="631.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="35.0" />
+       <Canvas fx:id="canvas" height="450.0" layoutX="254.0" layoutY="35.0" width="631.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="35.0" />
        <TextField layoutX="14.0" layoutY="506.0" onKeyReleased="#handleTextInput" prefHeight="26.0" prefWidth="283.0" AnchorPane.leftAnchor="14.0" />
        <Button layoutX="100.0" layoutY="553.0" mnemonicParsing="false" onAction="#handlePlayAction" prefHeight="31.0" prefWidth="62.0" text="Play" />
        <ToggleButton layoutX="38.0" layoutY="553.0" mnemonicParsing="false" onAction="#handlePauseAction" prefHeight="31.0" prefWidth="62.0" text="Pause" />
