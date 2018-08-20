@@ -6,10 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class multiCommController{
+public class multiCommController {
     public AnchorPane anchorPane;
     public Button add;
     public Button close;
+
     @FXML
     public void handleAddMultiCommAction(ActionEvent event) {
     }
@@ -18,6 +19,7 @@ public class multiCommController{
         // get a handle to the stage
         Stage stage = (Stage) close.getScene().getWindow();
         // do what you have to do
+
         stage.close();
 
     }
