@@ -114,7 +114,10 @@ public class MainController {
         Parent root;
         if (event.getSource() == btn1) {
             stage = new Stage();
-            root = FXMLLoader.load(getClass().getResource("MultiComm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MultiComm.fxml"));
+            root = loader.load();
+            MultiCommController multiCommController = loader.getController();
+            multiCommController.setStage(stage);
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(btn1.getScene().getWindow());
