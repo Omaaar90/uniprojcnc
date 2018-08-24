@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class multiCommController {
+public class MultiCommController {
     public AnchorPane anchorPane;
     public Button add;
     public Button close;
