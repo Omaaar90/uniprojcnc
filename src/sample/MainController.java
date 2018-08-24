@@ -28,7 +28,6 @@ import javafx.util.Callback;
 import javafx.concurrent.Task;
 
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
@@ -36,7 +35,7 @@ import java.util.ResourceBundle;
 import java.util.TreeMap;
 
 
-public class MainController{
+public class MainController {
     private GraphicsContext graphicsContext;
 
 
@@ -72,11 +71,11 @@ public class MainController{
 
     @FXML
     public void initialize() {
-          graphicsContext = canvas.getGraphicsContext2D();
-          graphicsContext.setFill(Color.GRAY);
-          graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-          graphicsContext.setStroke(Color.BLACK);
-          graphicsContext.setLineWidth(2);
+        graphicsContext = canvas.getGraphicsContext2D();
+        graphicsContext.setFill(Color.GRAY);
+        graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        graphicsContext.setStroke(Color.BLACK);
+        graphicsContext.setLineWidth(2);
 
 
                 /*
@@ -100,7 +99,6 @@ public class MainController{
     }
 
 
-
     @FXML
     private void handleMultiCommandAction(ActionEvent event) throws IOException {
 /*
@@ -113,104 +111,103 @@ public class MainController{
 */
 
 
+        Parent root;
+        if (event.getSource() == btn1) {
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MultiComm.fxml"));
+            root = loader.load();
+            MultiCommController multiCommController = loader.getController();
+            multiCommController.setStage(stage);
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(btn1.getScene().getWindow());
+            stage.showAndWait();
+        } else {
 
-                Parent root;
-                if(event.getSource()==btn1)
-                {
-                        stage = new Stage();
-                        root = FXMLLoader.load(getClass().getResource("MultiComm.fxml"));
-                        stage.setScene(new Scene(root));
-                        stage.initModality(Modality.APPLICATION_MODAL);
-                        stage.initOwner(btn1.getScene().getWindow());
-                        stage.showAndWait();
-                }
-                else
-                {
-
-                }
         }
+    }
 
 
-        @FXML
-        private void handlePlayAction (ActionEvent event) throws InterruptedException {
+    @FXML
+    private void handlePlayAction(ActionEvent event) throws InterruptedException {
 
-            Task draw = new Task<Void>() {
-                @Override
-                public Void call() throws InterruptedException {
-                    for (double i = 1; i < 100; i++) {
-                        graphicsContext.beginPath();
-                        graphicsContext.lineTo(i, 2);
-                        Thread.sleep(100);
-                        graphicsContext.stroke();
-                        if (!stop) {
-
-                        }
+        Task draw = new Task<Void>() {
+            @Override
+            public Void call() throws InterruptedException {
+                for (double i = 1; i < 100; i++) {
+                    graphicsContext.beginPath();
+                    graphicsContext.lineTo(i, 2);
+                    Thread.sleep(100);
+                    graphicsContext.stroke();
+                    if (stop) {
+                        break;
                     }
-
-                    return null;
                 }
-            };
-            new Thread(draw).start();
 
-        }
+                return null;
+            }
+        };
+        new Thread(draw).start();
 
-        @FXML
-        private void handlePauseAction (ActionEvent event){
+    }
 
+    @FXML
+    private void handlePauseAction(ActionEvent event) {
+        System.out.println(Interpreter.isValidCommand("g01"));
 
-        }
+    }
 
-        @FXML
-        private void handleStopAction (ActionEvent event){
-            stop = true;
-        }
-
-
-        @FXML
-        void handleAddMultiCommAction (ActionEvent event){
-
-        }
-
-        @FXML
-        void handleCloseMultiCommAction (ActionEvent event){
-            //stage=(Stage)btn2.getScene().getWindow();
+    @FXML
+    private void handleStopAction(ActionEvent event) {
+        stop = true;
+    }
 
 
-        }
+    @FXML
+    void handleAddMultiCommAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleCloseMultiCommAction(ActionEvent event) {
+        //stage=(Stage)btn2.getScene().getWindow();
 
 
-        @FXML
-        private void handleTextInput (KeyEvent ev){
+    }
 
-            if (ev.getCode().equals(KeyCode.ENTER)) {
-                Object source = ev.getSource();
-                if (source instanceof TextField) {
-                    TextField textfield = (TextField) source;
-                    addCommandToList(textfield.getText());
-                    textfield.setText("");
-                }
+
+    @FXML
+    private void handleTextInput(KeyEvent ev) {
+
+        if (ev.getCode().equals(KeyCode.ENTER)) {
+            Object source = ev.getSource();
+            if (source instanceof TextField) {
+                TextField textfield = (TextField) source;
+                addCommandToList(textfield.getText());
+                textfield.setText("");
             }
         }
+    }
 
 
-        public Map getCommandMap () {
-            return commandMap;
-        }
+    public Map getCommandMap() {
+        return commandMap;
+    }
 
-        public void setCommandMap (Map commandMap){
-            this.commandMap = commandMap;
-        }
+    public void setCommandMap(Map commandMap) {
+        this.commandMap = commandMap;
+    }
 
-        public void addCommandToList (String commandStr){
-            if (!(commandStr == null) && !"".equals(commandStr)) {
-                String[] splittedCommand = commandStr.split(" ", 2);
-                if (splittedCommand.length == 2) {
-                    commandMap.put(splittedCommand[0], splittedCommand[1]);
-                    ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(commandMap.entrySet());
-                    commandTable.setItems(items);
-                }
+    public void addCommandToList(String commandStr) {
+        if (!(commandStr == null) && !"".equals(commandStr)) {
+            String[] splittedCommand = commandStr.split(" ", 2);
+            if (splittedCommand.length == 2) {
+                commandMap.put(splittedCommand[0], splittedCommand[1]);
+                ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(commandMap.entrySet());
+                commandTable.setItems(items);
             }
         }
+    }
 
 }
 

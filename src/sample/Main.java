@@ -8,20 +8,18 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
-        @Override
-        public void start(Stage primaryStage) throws Exception{
-            Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-            primaryStage.setTitle("Hello World");
-            primaryStage.setScene(new Scene(root, 900 , 600));
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        }
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        primaryStage.setTitle("CNC Simulator");
+        primaryStage.setScene(new Scene(root, 900, 600));
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    }
 
-static void sayhello(){
-    System.out.println("Hello0");
-}
-        public static void main(String[] args) {
-            launch(args);
-        }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
 
