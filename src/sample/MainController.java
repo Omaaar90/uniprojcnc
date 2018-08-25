@@ -76,13 +76,6 @@ public class MainController {
         graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         graphicsContext.setStroke(Color.BLACK);
         graphicsContext.setLineWidth(2);
-
-
-                /*
-                commandMap.put("N01","G01");
-                commandMap.put("N02","G02");
-                 */
-
         positionColumn.setCellValueFactory(p -> {
             // this callback returns property for just one cell, you can't use a loop here
             // for first column we use key
@@ -153,7 +146,7 @@ public class MainController {
 
     @FXML
     private void handlePauseAction(ActionEvent event) {
-        System.out.println(Interpreter.isValidCommand("g01"));
+//        System.out.println(Interpreter.isValidCommand("g01"));
 
     }
 
