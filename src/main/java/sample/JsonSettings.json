@@ -1,0 +1,14 @@
+{
+  "HomePosition.X": 0,
+  "HomePosition.Y": 0,
+    "CuttingSpeed" : 2,
+    "Speed" : "4-8/min",
+    "ToolDiameter" : 15,
+    "Weight" : 89,
+    "WorkingSpace": "Grey",
+    "Drill" : "Red",
+    "Home" : "Green",
+    "N10" : "G01 "
+
+
+  }
