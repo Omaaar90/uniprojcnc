@@ -1,9 +1,8 @@
-package main.java.sample;
+package sample;
 
 import org.json.simple.parser.*;
 import org.json.simple.JSONObject;
 
-import java.io.FileNotFoundException;
 import java.io.Reader;
 import java.io.IOException;
 import java.io.InputStreamReader;
