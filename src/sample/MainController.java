@@ -36,23 +36,19 @@ import java.util.TreeMap;
 
 
 public class MainController {
-    private GraphicsContext graphicsContext;
-
-
-    private Map commandMap = new TreeMap();
     Thread draw;
     boolean stop = false;
     @FXML
-    private AnchorPane anchorPane;
-
-    @FXML
     Canvas canvas;
     @FXML
-    private Button hello;
-
-    @FXML
     Stage stage;
-
+    private GraphicsContext graphicsContext;
+    private Map commandMap = new TreeMap();
+    private Interpreter interpreter = Interpreter.getInstance();
+    @FXML
+    private AnchorPane anchorPane;
+    @FXML
+    private Button hello;
     @FXML
     private Button btn1;
 
@@ -72,14 +68,17 @@ public class MainController {
     @FXML
     public void initialize() {
         graphicsContext = canvas.getGraphicsContext2D();
+        interpreter.setGraphicsContext(graphicsContext);
         graphicsContext.setFill(Color.GRAY);
         graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         graphicsContext.setStroke(Color.BLACK);
         graphicsContext.setLineWidth(2);
+        System.out.println(interpreter.isValidCommand("M00"));
         positionColumn.setCellValueFactory(p -> {
             // this callback returns property for just one cell, you can't use a loop here
             // for first column we use key
             return new SimpleStringProperty(p.getValue().getKey());
+
         });
 
 
@@ -123,24 +122,21 @@ public class MainController {
 
     @FXML
     private void handlePlayAction(ActionEvent event) throws InterruptedException {
-
-        Task draw = new Task<Void>() {
+interpreter.translateCommand("G01 X10 Y10");
+       /* Task draw = new Task<Void>() {
             @Override
             public Void call() throws InterruptedException {
-                for (double i = 1; i < 100; i++) {
-                    graphicsContext.beginPath();
-                    graphicsContext.lineTo(i, 2);
-                    Thread.sleep(100);
-                    graphicsContext.stroke();
-                    if (stop) {
-                        break;
-                    }
-                }
-
+                graphicsContext.beginPath();
+                graphicsContext.lineTo(50, 70);
+                Thread.sleep(100);
+                graphicsContext.lineTo(150, 90);
+                graphicsContext.stroke();
                 return null;
+
+
             }
         };
-        new Thread(draw).start();
+        new Thread(draw).start();*/
 
     }
 
