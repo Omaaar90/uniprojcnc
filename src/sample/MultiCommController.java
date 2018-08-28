@@ -24,6 +24,8 @@ public class MultiCommController extends MainController{
     private TextArea multiCommand;
     private Stage stage;
 
+    private Commands commands;
+
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -35,8 +37,12 @@ public class MultiCommController extends MainController{
         stage.close();
         batchCommands = batchCommands.replaceAll("[\r\n]+", "\n");
         String lines[] = batchCommands.split("\n");
-        List lineslist = Arrays.asList(lines);
+        List<String> lineslist = Arrays.asList(lines);
         lineslist.sort(String.CASE_INSENSITIVE_ORDER);
+        Iterator<String> iter=lineslist.iterator();
+        while (iter.hasNext()) {
+           commands.addCommandToList(iter.next());
+        }
 
     }
 
@@ -46,5 +52,13 @@ public class MultiCommController extends MainController{
     }
 
     public void initialize() {
+    }
+
+    public Commands getCommands() {
+        return commands;
+    }
+
+    public void setCommands(Commands commands) {
+        this.commands = commands;
     }
 }

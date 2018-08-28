@@ -32,10 +32,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.TreeMap;
 
 
 public class MainController {
+
+    private GraphicsContext graphicsContext;
+
+
+    private Commands commands = new Commands();
+
     Thread draw;
     boolean stop = false;
     @FXML
@@ -86,7 +93,7 @@ public class MainController {
             // for second column we use value
             return new SimpleStringProperty(p.getValue().getValue());
         });
-        ObservableList items = FXCollections.observableArrayList(commandMap.entrySet());
+        ObservableList items = FXCollections.observableArrayList(commands.getCommandMap().entrySet());
         commandTable.setItems(items);
     }
 
@@ -109,13 +116,15 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MultiComm.fxml"));
             root = loader.load();
             MultiCommController multiCommController = loader.getController();
+            multiCommController.setCommands(this.commands);
             multiCommController.setStage(stage);
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(btn1.getScene().getWindow());
             stage.showAndWait();
+            ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(commands.getCommandMap().entrySet());
+            commandTable.setItems(items);
         } else {
-
         }
     }
 
@@ -172,31 +181,16 @@ interpreter.translateCommand("G01 X10 Y10");
             Object source = ev.getSource();
             if (source instanceof TextField) {
                 TextField textfield = (TextField) source;
-                addCommandToList(textfield.getText());
+                commands.addCommandToList(textfield.getText());
+                ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(commands.getCommandMap().entrySet());
+                commandTable.setItems(items);
+
                 textfield.setText("");
             }
         }
     }
 
 
-    public Map getCommandMap() {
-        return commandMap;
-    }
-
-    public void setCommandMap(Map commandMap) {
-        this.commandMap = commandMap;
-    }
-
-    public void addCommandToList(String commandStr) {
-        if (!(commandStr == null) && !"".equals(commandStr)) {
-            String[] splittedCommand = commandStr.split(" ", 2);
-            if (splittedCommand.length == 2) {
-                commandMap.put(splittedCommand[0], splittedCommand[1]);
-                ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(commandMap.entrySet());
-                commandTable.setItems(items);
-            }
-        }
-    }
 
 }
 
