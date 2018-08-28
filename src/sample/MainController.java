@@ -32,29 +32,23 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.TreeMap;
 
 
 public class MainController {
-    private GraphicsContext graphicsContext;
-
-
-    private Commands commands = new Commands();
-
     Thread draw;
     boolean stop = false;
     @FXML
-    private AnchorPane anchorPane;
-
-    @FXML
     Canvas canvas;
     @FXML
-    private Button hello;
-
-    @FXML
     Stage stage;
-
+    private GraphicsContext graphicsContext;
+    private Map commandMap = new TreeMap();
+    private Interpreter interpreter = Interpreter.getInstance();
+    @FXML
+    private AnchorPane anchorPane;
+    @FXML
+    private Button hello;
     @FXML
     private Button btn1;
 
@@ -74,14 +68,17 @@ public class MainController {
     @FXML
     public void initialize() {
         graphicsContext = canvas.getGraphicsContext2D();
+        interpreter.setGraphicsContext(graphicsContext);
         graphicsContext.setFill(Color.GRAY);
         graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         graphicsContext.setStroke(Color.BLACK);
         graphicsContext.setLineWidth(2);
+        System.out.println(interpreter.isValidCommand("M00"));
         positionColumn.setCellValueFactory(p -> {
             // this callback returns property for just one cell, you can't use a loop here
             // for first column we use key
             return new SimpleStringProperty(p.getValue().getKey());
+
         });
 
 
@@ -89,7 +86,7 @@ public class MainController {
             // for second column we use value
             return new SimpleStringProperty(p.getValue().getValue());
         });
-        ObservableList items = FXCollections.observableArrayList(commands.getCommandMap().entrySet());
+        ObservableList items = FXCollections.observableArrayList(commandMap.entrySet());
         commandTable.setItems(items);
     }
 
@@ -112,39 +109,34 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MultiComm.fxml"));
             root = loader.load();
             MultiCommController multiCommController = loader.getController();
-            multiCommController.setCommands(this.commands);
             multiCommController.setStage(stage);
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(btn1.getScene().getWindow());
             stage.showAndWait();
-            ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(commands.getCommandMap().entrySet());
-            commandTable.setItems(items);
         } else {
+
         }
     }
 
 
     @FXML
     private void handlePlayAction(ActionEvent event) throws InterruptedException {
-
-        Task draw = new Task<Void>() {
+interpreter.translateCommand("G01 X10 Y10");
+       /* Task draw = new Task<Void>() {
             @Override
             public Void call() throws InterruptedException {
-                for (double i = 1; i < 100; i++) {
-                    graphicsContext.beginPath();
-                    graphicsContext.lineTo(i, 2);
-                    Thread.sleep(100);
-                    graphicsContext.stroke();
-                    if (stop) {
-                        break;
-                    }
-                }
-
+                graphicsContext.beginPath();
+                graphicsContext.lineTo(50, 70);
+                Thread.sleep(100);
+                graphicsContext.lineTo(150, 90);
+                graphicsContext.stroke();
                 return null;
+
+
             }
         };
-        new Thread(draw).start();
+        new Thread(draw).start();*/
 
     }
 
@@ -180,16 +172,31 @@ public class MainController {
             Object source = ev.getSource();
             if (source instanceof TextField) {
                 TextField textfield = (TextField) source;
-                commands.addCommandToList(textfield.getText());
-                ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(commands.getCommandMap().entrySet());
-                commandTable.setItems(items);
-
+                addCommandToList(textfield.getText());
                 textfield.setText("");
             }
         }
     }
 
 
+    public Map getCommandMap() {
+        return commandMap;
+    }
+
+    public void setCommandMap(Map commandMap) {
+        this.commandMap = commandMap;
+    }
+
+    public void addCommandToList(String commandStr) {
+        if (!(commandStr == null) && !"".equals(commandStr)) {
+            String[] splittedCommand = commandStr.split(" ", 2);
+            if (splittedCommand.length == 2) {
+                commandMap.put(splittedCommand[0], splittedCommand[1]);
+                ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(commandMap.entrySet());
+                commandTable.setItems(items);
+            }
+        }
+    }
 
 }
 
