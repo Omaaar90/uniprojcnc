@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.util.*;
 
 // TODO limit the lines count in the batch processing mode
-public class MultiCommController {
+public class MultiCommController extends MainController{
 
     @FXML
     private AnchorPane anchorPane;
