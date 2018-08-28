@@ -1,8 +1,70 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<GridPane fx:controller="sample.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.MainController">
+    <children>
+        <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Close"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Canvas fx:id="canvas" height="450.0" layoutX="254.0" layoutY="35.0" width="631.0" AnchorPane.rightAnchor="15.0"
+                AnchorPane.topAnchor="35.0"/>
+        <TextField layoutX="14.0" layoutY="506.0" onKeyReleased="#handleTextInput" prefHeight="26.0" prefWidth="283.0"
+                   AnchorPane.leftAnchor="14.0"/>
+        <Button layoutX="100.0" layoutY="553.0" mnemonicParsing="false" onAction="#handlePlayAction" prefHeight="31.0"
+                prefWidth="62.0" text="Play"/>
+        <ToggleButton layoutX="38.0" layoutY="553.0" mnemonicParsing="false" onAction="#handlePauseAction"
+                      prefHeight="31.0" prefWidth="62.0" text="Pause"/>
+        <Separator layoutX="244.0" layoutY="25.0" orientation="VERTICAL" AnchorPane.bottomAnchor="106.0"
+                   AnchorPane.topAnchor="25.0"/>
+        <TableView fx:id="commandTable" layoutY="34.0" prefHeight="450.0" prefWidth="247.0" AnchorPane.leftAnchor="0.0">
+            <columns>
+                <TableColumn fx:id="positionColumn" editable="false" prefWidth="75.0" text="Position"/>
+                <TableColumn fx:id="commandColumn" prefWidth="169.0" text="Command"/>
+            </columns>
+        </TableView>
+        <Button layoutX="162.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleStopAction" prefHeight="32.0"
+                prefWidth="51.0" text="Stop"/>
+        <Button fx:id="btn1" layoutX="303.0" layoutY="506.0" mnemonicParsing="false"
+                onAction="#handleMultiCommandAction" text="+ Add"/>
+        <Separator disable="true" layoutY="489.0" opacity="0.86" prefHeight="10.0" prefWidth="900.0"
+                   AnchorPane.leftAnchor="0.0">
+            <effect>
+                <Glow/>
+            </effect>
+        </Separator>
+    </children>
+</AnchorPane>
