@@ -36,7 +36,7 @@ public class Commands {
         List<String> list=new ArrayList<>();
         Set<Map.Entry<String, String>> entrySet = commandMap.entrySet();
         for (Map.Entry<String,String> entry: entrySet
-             ) {
+                ) {
             String line = entry.getKey() + " " + entry.getValue();
             list.add(line);
         }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.effect.*?>
 <?import java.lang.*?>
 <?import javafx.scene.canvas.*?>
@@ -17,54 +19,62 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="sample.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
     <children>
         <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Close"/>
+                        <MenuItem mnemonicParsing="false" text="Close" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Delete"/>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About"/>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem mnemonicParsing="false" text="Documentation" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
-        <Canvas fx:id="canvas" height="450.0" layoutX="254.0" layoutY="35.0" width="631.0" AnchorPane.rightAnchor="15.0"
-                AnchorPane.topAnchor="35.0"/>
-        <TextField layoutX="14.0" layoutY="506.0" onKeyReleased="#handleTextInput" prefHeight="26.0" prefWidth="283.0"
-                   AnchorPane.leftAnchor="14.0"/>
-        <Button layoutX="100.0" layoutY="553.0" mnemonicParsing="false" onAction="#handlePlayAction" prefHeight="31.0"
-                prefWidth="62.0" text="Play"/>
-        <ToggleButton layoutX="38.0" layoutY="553.0" mnemonicParsing="false" onAction="#handlePauseAction"
-                      prefHeight="31.0" prefWidth="62.0" text="Pause"/>
-        <Separator layoutX="244.0" layoutY="25.0" orientation="VERTICAL" AnchorPane.bottomAnchor="106.0"
-                   AnchorPane.topAnchor="25.0"/>
+        <Canvas fx:id="canvas" height="450.0" layoutX="254.0" layoutY="35.0" width="631.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="35.0" />
+        <TextField layoutX="14.0" layoutY="506.0" onKeyReleased="#handleTextInput" prefHeight="26.0" prefWidth="283.0" AnchorPane.leftAnchor="14.0" />
+        <Button layoutX="100.0" layoutY="553.0" mnemonicParsing="false" onAction="#handlePlayAction" prefHeight="31.0" prefWidth="62.0" text="Play" />
+        <ToggleButton layoutX="38.0" layoutY="553.0" mnemonicParsing="false" onAction="#handlePauseAction" prefHeight="31.0" prefWidth="62.0" text="Pause" />
+        <Separator layoutX="244.0" layoutY="25.0" orientation="VERTICAL" AnchorPane.bottomAnchor="106.0" AnchorPane.topAnchor="25.0" />
         <TableView fx:id="commandTable" layoutY="34.0" prefHeight="450.0" prefWidth="247.0" AnchorPane.leftAnchor="0.0">
             <columns>
-                <TableColumn fx:id="positionColumn" editable="false" prefWidth="75.0" text="Position"/>
-                <TableColumn fx:id="commandColumn" prefWidth="169.0" text="Command"/>
+                <TableColumn fx:id="positionColumn" editable="false" prefWidth="75.0" text="Position" />
+                <TableColumn fx:id="commandColumn" prefWidth="169.0" text="Command" />
             </columns>
         </TableView>
-        <Button layoutX="162.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleStopAction" prefHeight="32.0"
-                prefWidth="51.0" text="Stop"/>
-        <Button fx:id="btn1" layoutX="303.0" layoutY="506.0" mnemonicParsing="false"
-                onAction="#handleMultiCommandAction" text="+ Add"/>
-        <Separator disable="true" layoutY="489.0" opacity="0.86" prefHeight="10.0" prefWidth="900.0"
-                   AnchorPane.leftAnchor="0.0">
+        <Button layoutX="162.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleStopAction" prefHeight="32.0" prefWidth="51.0" text="Stop" />
+        <Button fx:id="btn1" layoutX="303.0" layoutY="506.0" mnemonicParsing="false" onAction="#handleMultiCommandAction" text="+ Add" />
+        <Separator disable="true" layoutY="489.0" opacity="0.86" prefHeight="10.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0">
             <effect>
-                <Glow/>
+                <Glow />
             </effect>
         </Separator>
+      <Circle fill="#1fff5c" layoutX="254.0" layoutY="35.0" radius="10.0" strokeType="INSIDE">
+         <stroke>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#49bf7b" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </stroke>
+      </Circle>
+      <Label layoutX="570.0" layoutY="562.0" text="Speed:" />
+      <Label layoutX="716.0" layoutY="561.0" text="position:" />
+      <Label layoutX="832.0" layoutY="562.0" text="Y" />
+      <Label layoutX="768.0" layoutY="562.0" text="X" />
+      <TextField layoutX="790.0" layoutY="557.0" onDragDetected="#handlePositionXAction" prefHeight="25.0" prefWidth="36.0" />
+      <TextField layoutX="849.0" layoutY="558.0" onDragDetected="#handlePositionYAction" prefHeight="25.0" prefWidth="36.0" />
+      <Label layoutX="619.0" layoutY="562.0" text="2m/min" />
     </children>
 </AnchorPane>

@@ -158,6 +158,25 @@ interpreter.translateCommand("G01 X10 Y10");
     }
 
     @FXML
+    void handleSpeedAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handlePositionXAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handlePositionYAction(ActionEvent event) {
+
+    }
+    @FXML
+    void handleOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
     void handleCloseMultiCommAction(ActionEvent event) {
         //stage=(Stage)btn2.getScene().getWindow();
 
